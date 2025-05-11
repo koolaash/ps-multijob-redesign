@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f1729 0%, #1e3a8a 100%);
+}
+
+:root {
+  --color-primary: #38bdf8;
+  --color-primary-dark: #0284c7;
+  --color-secondary: #60a5fa;
+  --color-darkest: #0f172a;
+  --color-darker: #1e293b;
+  --color-dark: #334155;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-lightestgrey: #e2e8f0;
+  --color-lightgrey: #cbd5e1;
+  --color-grey: #64748b;
+  --font-color: rgba(var(--color-white), 0.87);
+  --transition-speed: 0.3s;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+.glass-effect {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.3); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
