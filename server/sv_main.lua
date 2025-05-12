@@ -253,16 +253,28 @@ QBCore.Functions.CreateCallback("ps-multijob:getJobs", function(source, cb)
                 print("The job '" .. job .. "' has been removed and is not present in your QBCore jobs. Remove it from the multijob SQL or add it back to your qbcore jobs.lua.")
             else
                 local online = active[job] or 0
+                local jobData = QBCore.Shared.Jobs[job]
+                local gradeData = jobData.grades and jobData.grades[tostring(grade)]
+                
+                if not gradeData then
+                    print(("Warning: Grade %d doesn't exist for job '%s'. Using default values."):format(grade, job))
+                    gradeData = {
+                        name = "Unknown",
+                        payment = 0
+                    }
+                end
+
                 getjobs = {
                     name = job,
                     grade = grade,
                     description = Config.Descriptions[job],
                     icon = Config.FontAwesomeIcons[job],
-                    label = QBCore.Shared.Jobs[job].label,
-                    gradeLabel = QBCore.Shared.Jobs[job].grades[tostring(grade)].name,
-                    salary = QBCore.Shared.Jobs[job].grades[tostring(grade)].payment,
+                    label = jobData.label,
+                    gradeLabel = gradeData.name,
+                    salary = gradeData.payment,
                     active = online,
                 }
+                
                 if Config.WhitelistJobs[job] then
                     whitelistedjobs[#whitelistedjobs+1] = getjobs
                 else
